@@ -18,18 +18,18 @@ class Item:
 
     def PopItem(self, count: int):
         count = abs(count)
-        if(self.__count < count):
+        if self.__count < count:
             raise ValueError(count)
         self.__count -= count
         return Item(self.__name, count, self.__maxCount)
 
     def PushItem(self, item):
-        if(item.GetName() != self.__name):
+        if item.GetName() != self.__name:
             raise ValueError(f"Name of {item}")
-        if(self.IsFill()):
+        if self.IsFill():
             return item
         emptySpace = self.__maxCount - self.__count
-        if(emptySpace > item.GetCount()):
+        if emptySpace > item.GetCount():
             self.__count += item.GetCount()
             item.PopItem(item.GetCount())
             return item
@@ -37,7 +37,6 @@ class Item:
             self.__count = self.__maxCount
             item.PopItem(emptySpace)
             return item
-
 
     def IsFill(self) -> bool:
         return self.__count == self.__maxCount
@@ -49,28 +48,28 @@ class Inventory:
 
     def GetItems(self) -> list:
         return self.__items.copy()
+
     def AddItem(self, obj: Item):
         item = copy.deepcopy(obj)
-        for i in filter(lambda i: i.GetName() == item.GetName() and not i.IsFill(), self.__items):
+        for i in filter(lambda a: a.GetName() == item.GetName() and not a.IsFill(), self.__items):
             i.PushItem(item)
-            if(item.GetCount() == 0):
+            if item.GetCount() == 0:
                 break
-        if(item.GetCount() > 0):
+        if item.GetCount() > 0:
             self.__items.append(item)
 
     def RemoveItem(self, item: Item):
-        for i in filter(lambda i: i.GetName() == item.GetName(), self.__items):
-            if(i.GetCount() > item.GetCount()):
+        for i in filter(lambda a: a.GetName() == item.GetName(), self.__items):
+            if i.GetCount() > item.GetCount():
                 i.PopItem(item.GetCount())
                 item.PopItem(item.GetCount())
-
 
             else:
                 item.PopItem(i.GetCount())
                 i.PopItem(i.GetCount())
-                if(i.GetCount() == 0):
+                if i.GetCount() == 0:
                     self.__items.remove(i)
-            if(item.GetCount() == 0):
+            if item.GetCount() == 0:
                 break
 
     def Clear(self):

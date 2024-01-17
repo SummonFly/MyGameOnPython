@@ -1,6 +1,6 @@
 from kivy.uix.screenmanager import Screen
 from kivy.uix.button import Button
-import globalVariable as gv
+import globalVariable as globalVar
 
 
 class SettingsPage(Screen):
@@ -11,4 +11,4 @@ class SettingsPage(Screen):
         self.add_widget(btn)
 
     def OnPressMain(self, *args):
-        gv.screenManager.current = "main"
+        globalVar.screenManager.current = "main"
