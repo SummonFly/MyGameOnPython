@@ -21,3 +21,4 @@ class WeaponImprovement(IImprovement):
         obj.Speed += self.Speed
         obj.CritDamageMultiplier += self.CritDamageMultiplier
         obj.CritChance += self.CritChance
+

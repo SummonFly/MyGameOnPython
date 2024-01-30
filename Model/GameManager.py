@@ -4,7 +4,7 @@ from Model.Profile import Profile
 
 
 class GameManager:
-    __configPath = "/../GameConfig.json"
+    __configPath = "GameConfig.json"
 
     def __init__(self):
         self.Config = GameConfig(self.__configPath)

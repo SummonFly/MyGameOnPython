@@ -1,4 +1,5 @@
 import pickle
+from Model.Inventory import Inventory
 
 
 class GameConfig:
@@ -19,5 +20,5 @@ class GameConfig:
     def __init__(self, path: str):
         self.Path = path
         self.Player = None
-        self.GameInventory = None
-        self.Coins = 0
+        self.GameInventory = Inventory()
+        self.Coins = 100_000_000

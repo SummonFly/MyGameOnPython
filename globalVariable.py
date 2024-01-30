@@ -1,10 +1,12 @@
 from kivy.uix.screenmanager import ScreenManager
 
+global gameApp
+gameApp = None
 global screenManager
 screenManager = ScreenManager()
-global buttonRed
-buttonRed = [100, 1, 1]
-global buttonBlack
-buttonBlack = [0, 0, 0]
+global buttonColor
+buttonColor = "#7fcfffff"
+global labelColor
+labelColor = [1, 1, 1]
 global mainBackgroundSource
 mainBackgroundSource = "resources/background.png"

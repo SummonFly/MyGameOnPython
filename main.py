@@ -11,17 +11,27 @@ from Model.GameManager import GameManager
 
 class GameApp(App):
     def build(self):
-        globalVar.screenManager.add_widget(MainPage(name="main"))
-        globalVar.screenManager.add_widget(StorePage(self.__gameManager.Store, name="store"))
-        globalVar.screenManager.add_widget(FightPage(name="fight"))
-        globalVar.screenManager.add_widget(ProfilePage(self.__gameManager.Profile, name="profile"))
-        globalVar.screenManager.add_widget(SettingsPage(name="settings"))
+        Window.clearcolor = (100 / 255, 100 / 255, 100 / 255, 1)
+        globalVar.screenManager.add_widget(self.mainPage)
+        globalVar.screenManager.add_widget(self.storePage)
+        globalVar.screenManager.add_widget(self.fightPage)
+        globalVar.screenManager.add_widget(self.profilePage)
+        globalVar.screenManager.add_widget(self.settingPage)
         return globalVar.screenManager
+
+    def SaveGame(self):
+        self.__gameManager.Config.Save()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.__gameManager = GameManager()
+        self.mainPage = MainPage(name="main")
+        self.storePage = StorePage(self.__gameManager.Store, name="store")
+        self.fightPage = FightPage(name="fight")
+        self.profilePage = ProfilePage(self.__gameManager.Profile, name="profile")
+        self.settingPage = SettingsPage(name="settings")
 
 
 if __name__ == "__main__":
-    GameApp().run()
+    globalVar.gameApp = GameApp()
+    globalVar.gameApp.run()
