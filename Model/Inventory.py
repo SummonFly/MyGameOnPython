@@ -3,43 +3,48 @@ import copy
 
 class Item:
     def __init__(self, name: str, count: int, maxCount: int = -1):
-        self.__name = name
-        self.__count = abs(count)
-        self.__maxCount = self.__count if abs(maxCount) == -1 else abs(maxCount)
+        self._name = name
+        self._count = abs(count)
+        self._maxCount = self._count if abs(maxCount) == -1 else abs(maxCount)
 
     def GetName(self):
-        return self.__name
+        return self._name
 
     def GetCount(self):
-        return self.__count
+        return self._count
 
     def GetMaxCount(self):
-        return self.__maxCount
+        if self._count > self._maxCount:
+            self._maxCount = self._count
+        return self._maxCount
 
     def PopItem(self, count: int):
         count = abs(count)
-        if self.__count < count:
+        if self._count < count:
             raise ValueError(count)
-        self.__count -= count
-        return Item(self.__name, count, self.__maxCount)
+        item = copy.deepcopy(self)
+        item._maxCount = count
+        item._count = count
+        self._count -= count
+        return item
 
     def PushItem(self, item):
-        if item.GetName() != self.__name:
+        if item.GetName() != self._name:
             raise ValueError(f"Name of {item}")
         if self.IsFill():
             return item
-        emptySpace = self.__maxCount - self.__count
+        emptySpace = self._maxCount - self._count
         if emptySpace > item.GetCount():
-            self.__count += item.GetCount()
+            self._count += item.GetCount()
             item.PopItem(item.GetCount())
             return item
         else:
-            self.__count = self.__maxCount
+            self._count = self._maxCount
             item.PopItem(emptySpace)
             return item
 
     def IsFill(self) -> bool:
-        return self.__count == self.__maxCount
+        return self._count == self._maxCount
 
 
 class Inventory:

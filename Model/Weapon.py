@@ -1,4 +1,5 @@
 from Model.Improve import *
+from Model.Inventory import Item
 
 
 class Weapon(IImproveable):
@@ -22,3 +23,8 @@ class WeaponImprovement(IImprovement):
         obj.CritDamageMultiplier += self.CritDamageMultiplier
         obj.CritChance += self.CritChance
 
+
+class WeaponItem(Weapon, Item):
+    def __init__(self, name: str, count: int = 1, maxCount: int = -1, damage: int = 0, speed: float = 0, multiplier: float = 0, chance: float = 0):
+        Item.__init__(self, name, count, maxCount)
+        Weapon.__init__(self, damage, speed, multiplier, chance)
