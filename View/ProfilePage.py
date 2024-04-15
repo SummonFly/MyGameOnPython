@@ -19,10 +19,15 @@ class ProfilePage(Screen):
         self.__initView()
 
     def __initView(self):
-        main = BoxLayout(orientation="vertical", size_hint=(1, 1))
-        main.add_widget(Button(text="toMain", size_hint=(1, 0.1), on_press=self.OnPressMain))
+        main = BoxLayout(orientation="vertical", size_hint=(1, 1), spacing=6)
+        main.add_widget(Button(text="toMain",
+                               size_hint=(1, 0.1),
+                               on_press=self.OnPressMain,
+                               background_color=globalVar.buttonColor,
+                               color=globalVar.buttonTextColor,
+                               background_normal=''))
 
-        second = BoxLayout(size_hint=(1, 0.9))
+        second = BoxLayout(size_hint=(1, 0.9), spacing=6)
 
         inventory = BoxLayout(size_hint=(0.5, 1), orientation="vertical")
 
@@ -42,7 +47,8 @@ class ProfilePage(Screen):
 
     def __GetItemButtonCrutch(self, item: Item) -> Button:
         return Button(text=f"{item.GetName()}", on_press=lambda *args: self.OnPressItem(item),
-                      height=80, size_hint_y=None, background_color=globalVar.buttonColor)
+                      height=80, size_hint_y=None, background_color=globalVar.buttonColor,
+                      color=globalVar.buttonTextColor, background_normal='')
 
     def __GetInventoryView(self, inventory: Inventory) -> GridLayout:
         listItem = BoxLayout(orientation="vertical", size_hint=(1, None), spacing=5)

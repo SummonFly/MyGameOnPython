@@ -11,7 +11,7 @@ from kivy.core.window import Window
 from Model.Store import Store, Good
 from View.Drawer import Drawer
 from View.SliderWithEntry import SliderWithEntry
-from View.PROLabel import PROLabel
+from View.PROWidget import PROLabel
 
 
 class StorePage(Screen):
@@ -36,22 +36,26 @@ class StorePage(Screen):
 
         subBox = BoxLayout(
             size_hint=(1, 0.9),
-            padding=(10, 10, 10, 10))
+            padding=(10, 10, 10, 10),
+            spacing=6)
 
         leftBox = BoxLayout(
             orientation="vertical",
             size_hint=(0.5, 1))
         gridText = GridLayout(
             cols=2,
+            padding=3,
             size_hint=(1, 0.1))
         gridText.add_widget(
-            Label(text="NAME",
-                  size_hint=(0.7, 1),
-                  color=globalVar.textColor))
+            PROLabel(text="NAME",
+                     size_hint=(0.7, 1),
+                     color=globalVar.textColor,
+                     backgroundColor=globalVar.labelBackgroundColor))
         gridText.add_widget(
-            Label(text="COST",
-                  size_hint=(0.3, 1),
-                  color=globalVar.textColor)),
+            PROLabel(text="COST",
+                     size_hint=(0.3, 1),
+                     color=globalVar.textColor,
+                     backgroundColor=globalVar.labelBackgroundColor)),
         leftBox.add_widget(gridText)
 
         self.__goodsView = ScrollView(
@@ -62,11 +66,13 @@ class StorePage(Screen):
 
         rightBox = BoxLayout(
             size_hint=(0.5, 1),
+            spacing=3,
             orientation="vertical")
 
         rightBox.add_widget(
-            Label(text="STATS",
-                  size_hint=(1, 0.07)))
+            PROLabel(text="STATS",
+                     size_hint=(1, 0.07),
+                     backgroundColor=globalVar.labelBackgroundColor))
 
         self.statsScroll = ScrollView(
             size=Window.size,
@@ -137,4 +143,3 @@ class StorePage(Screen):
     def __UpdateStatsView(self, good: Good):
         self.statsScroll.clear_widgets()
         self.statsScroll.add_widget(Drawer().GetView(good.Item))
-

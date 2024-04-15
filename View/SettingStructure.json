@@ -1,0 +1,41 @@
+[
+    {
+        "type": "title",
+        "title": "Windows"
+    },
+    {
+        "type": "color",
+        "title": "Main background color",
+        "desc": "Set the main background color",
+        "section": "graphics",
+        "key": "mainBackgroundColor"
+    },
+    {
+        "type": "color",
+        "title": "Button color",
+        "desc": "Set the main background color",
+        "section": "graphics",
+        "key": "buttoncolor"
+    },
+    {
+        "type": "color",
+        "title": "Button text color",
+        "desc": "Set the main background color",
+        "section": "graphics",
+        "key": "buttontextcolor"
+    },
+    {
+        "type": "color",
+        "title": "Label background color",
+        "desc": "Set the main background color",
+        "section": "graphics",
+        "key": "labelbackgroundcolor"
+    },
+    {
+        "type": "color",
+        "title": "Text color",
+        "desc": "Set the main background color",
+        "section": "graphics",
+        "key": "textcolor"
+    }
+]

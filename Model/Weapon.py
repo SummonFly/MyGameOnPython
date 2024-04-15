@@ -28,3 +28,9 @@ class WeaponItem(Weapon, Item):
     def __init__(self, name: str, count: int = 1, maxCount: int = -1, damage: int = 0, speed: float = 0, multiplier: float = 0, chance: float = 0):
         Item.__init__(self, name, count, maxCount)
         Weapon.__init__(self, damage, speed, multiplier, chance)
+
+
+class WeaponImprovementItem(WeaponImprovement, Item):
+    def __init__(self, name: str, count: int = 1, maxCount: int = -1, damage: int = 0, speed: float = 0, multiplier: float = 0, chance: float = 0):
+        Item.__init__(self, name, count, maxCount)
+        WeaponImprovement.__init__(self, damage, speed, multiplier, chance)

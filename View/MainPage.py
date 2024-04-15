@@ -16,7 +16,7 @@ class MainPage(Screen):
         box.add_widget(Button(text="PROFILE", on_press=self.OnPressProfile, background_color=globalVar.buttonColor, color=globalVar.buttonTextColor, background_normal=''))
         box.add_widget(Button(text="SETTING", on_press=self.OnPressSettings, background_color=globalVar.buttonColor, color=globalVar.buttonTextColor, background_normal=''))
         box.add_widget(Button(text="EXIT", on_press=self.OnPressExit, background_color=globalVar.buttonColor, color=globalVar.buttonTextColor, background_normal=''))
-        print(globalVar.buttonColor)
+
         anchor.add_widget(box)
         self.add_widget(anchor)
 
@@ -24,7 +24,7 @@ class MainPage(Screen):
         globalVar.screenManager.current = "store"
 
     def OnPressFight(self, *args):
-        globalVar.screenManager.current = "fight"
+        globalVar.screenManager.current = "fightingSetup"
 
     def OnPressProfile(self, *args):
         globalVar.gameApp.profilePage.Update()

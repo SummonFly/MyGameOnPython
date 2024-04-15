@@ -1,18 +1,26 @@
 from kivy.uix.screenmanager import ScreenManager
+from kivy.uix.settings import Settings, ConfigParser
 
 global gameApp
 gameApp = None
 global screenManager
 screenManager = ScreenManager()
+global setting
+setting = Settings()
+global config
+config = ConfigParser()
+config.read("View/SettingConfig.ini")
+
+
 global mainBackgroundColor
-mainBackgroundColor = "#000000"
+mainBackgroundColor = config.get(section='graphics', option='mainbackgroundcolor')
 global buttonColor
-buttonColor = "#9BBDBF"
+buttonColor = config.get(section='graphics', option='buttoncolor')
 global buttonTextColor
-buttonTextColor = "#000000"
+buttonTextColor = config.get(section='graphics', option='buttontextcolor')
 global labelBackgroundColor
-labelBackgroundColor = "#000000"
+labelBackgroundColor = config.get(section='graphics', option='labelbackgroundcolor')
 global textColor
-textColor = "#9BBDBF"
+textColor = config.get(section='graphics', option='textcolor')
 global mainBackgroundSource
 mainBackgroundSource = "resources/background.png"
