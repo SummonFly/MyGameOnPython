@@ -22,8 +22,7 @@ class FightingPage(Screen):
         super(FightingPage, self).__init__(**kwargs)
         self.__fighting = fighting
         self.__selectedItem = None
-
-        self.__fighting.Player.Inventory.AddItem(WeaponImprovementItem(name="Lolll", damage=34, speed=-5))
+        self.__fighting.OnGameOver = self.OnPressMain
 
         mainBox = BoxLayout(orientation="horizontal", spacing=10)
         leftBox = BoxLayout(orientation="vertical", spacing=6, size_hint=(0.5, 1))
@@ -42,9 +41,9 @@ class FightingPage(Screen):
         self.__selectedItemView.add_widget(self.__GetSelectedItemView(self.__selectedItem))
         leftBox.add_widget(self.__selectedItemView)
 
-        middleBox.add_widget(Button(text="Menu", on_press=self.OnPressMain, size_hint_y=0.05,
-                                    color=globalVar.buttonTextColor,
-                                    background_color=globalVar.buttonColor, ))
+        # middleBox.add_widget(Button(text="Menu", on_press=self.OnPressMain, size_hint_y=0.05,
+        #                             color=globalVar.buttonTextColor,
+        #                             background_color=globalVar.buttonColor, ))
         middleBox.add_widget(self.__GetFightingMenu())
         middleBox.add_widget(self.__GetInventoryView(self.__fighting.Player.Inventory))
 
@@ -138,8 +137,12 @@ class FightingPage(Screen):
         box.add_widget(scroll)
         return box
 
+    def __EnemyTurn(self):
+        self.__fighting.MakeDamage(self.__fighting.Player, self.__fighting.Enemy.Weapon)
+        self.__UpdatePlayerStats()
+
     def onPressSkipTurn(self, *args):
-        pass
+        self.__EnemyTurn()
 
     def __UpdatePlayerStats(self):
         self.__playerStats.clear_widgets()
@@ -160,11 +163,13 @@ class FightingPage(Screen):
     def onPressAttackPlayer(self, *args):
         self.__fighting.MakeDamage(self.__fighting.Player,
                                    self.__fighting.Player.Weapon)
+        self.__EnemyTurn()
         self.__UpdatePlayerStats()
 
     def onPressAttackEnemy(self, *args):
         self.__fighting.MakeDamage(self.__fighting.Enemy,
                                    self.__fighting.Player.Weapon)
+        self.__EnemyTurn()
         self.__UpdateEnemyStats()
 
     def onPressEffectPlayer(self, *args):
@@ -172,6 +177,7 @@ class FightingPage(Screen):
             return
         self.__fighting.MakeEffectAt(self.__fighting.Player,
                                      self.__selectedItem)
+        self.__EnemyTurn()
         self.__UpdatePlayerStats()
 
     def onPressEffectEnemy(self, *args):
@@ -179,6 +185,7 @@ class FightingPage(Screen):
             return
         self.__fighting.MakeEffectAt(self.__fighting.Enemy,
                                      self.__selectedItem)
+        self.__EnemyTurn()
         self.__UpdateEnemyStats()
 
     def onPressEffectPlayerWeapon(self, *args):
@@ -186,6 +193,7 @@ class FightingPage(Screen):
             return
         self.__fighting.MakeEffectAt(self.__fighting.Player.Weapon,
                                      self.__selectedItem)
+        self.__EnemyTurn()
         self.__UpdatePlayerWeaponStats()
 
     def onPressEffectEnemyWeapon(self, *args):
@@ -193,8 +201,10 @@ class FightingPage(Screen):
             return
         self.__fighting.MakeEffectAt(self.__fighting.Enemy.Weapon,
                                      self.__selectedItem)
+        self.__EnemyTurn()
         self.__UpdateEnemyWeaponStats()
 
     def OnPressMain(self, *args):
         globalVar.screenManager.remove_widget(self)
+        self.clear_widgets()
         globalVar.screenManager.current = "main"

@@ -1,6 +1,5 @@
 import pickle
 from Model.Inventory import Inventory
-from Model.Damageable import Player
 
 
 class GameConfig:

@@ -32,8 +32,7 @@ class Store:
         if count > good.Item.GetCount():
             print(count, good.Item.GetCount())
             return
-        self.Config.GameInventory.AddItem(good.Item.PopItem(count))
-        print(self.Config.GameInventory.GetItems())
+        self.Config.Player.Inventory.AddItem(good.Item.PopItem(count))
         self.Config.Coins -= good.Cost * count
         if good.Item.GetCount() == 0:
             good = None

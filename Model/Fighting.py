@@ -1,3 +1,4 @@
+import copy
 import random
 
 from multipledispatch import dispatch
@@ -10,27 +11,39 @@ from Model.Inventory import Inventory, Item
 
 class Fighting:
     def __init__(self, player: Player, enemy: Player):
-        self.Player = player
+        self.Player = copy.copy(player)
         self.Enemy = enemy
         self.OnGameOver = lambda: print("GameOver")
         self.OnPlayerWin = lambda: print("The player Win")
         self.OnPlayerLost = lambda: print("The player lost")
 
     def __CheckPlayersHealth(self):
-        pass
+        if self.Player.Health <= 0:
+            self.OnGameOver()
+            self.OnPlayerLost()
+        if self.Enemy.Health <= 0:
+            self.OnGameOver()
+            self.OnPlayerWin()
 
     def MakeDamage(self, player: Player, weapon: Weapon):
         player.AcceptDamage(weapon)
+        self.__CheckPlayersHealth()
 
     @dispatch(Player, Potion)
     def MakeEffectAt(self, player: Player, potion: Potion):
+        if potion.GetCount() <= 0:
+            return
         player.Improve(potion)
         potion.PopItem(1)
+        self.__CheckPlayersHealth()
 
     @dispatch(Weapon, WeaponImprovementItem)
     def MakeEffectAt(self, weapon: Weapon, improvement: WeaponImprovementItem):
+        if improvement.GetCount() <= 0:
+            return
         weapon.Improve(improvement)
         improvement.PopItem(1)
+        self.__CheckPlayersHealth()
 
 
 class FightingSetup:

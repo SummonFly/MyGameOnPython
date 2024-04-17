@@ -36,4 +36,3 @@ class GameApp(App):
 if __name__ == "__main__":
     globalVar.gameApp = GameApp()
     globalVar.gameApp.run()
-
