@@ -10,7 +10,7 @@ import globalVariable as globalVar
 from Model.Fighting import Fighting
 from Model.Damageable import Player
 from Model.Potion import Potion
-from Model.Weapon import WeaponItem, WeaponImprovementItem, Weapon
+from Model.Weapon import WeaponImprovementItem, Weapon
 from Model.Inventory import Inventory, Item
 
 from View.Drawer import Drawer
@@ -64,7 +64,7 @@ class FightingPage(Screen):
     def __GetFightingMenu(self) -> BoxLayout:
         box = BoxLayout(size_hint=(1, 0.4), orientation="vertical", spacing=2)
         box.add_widget(Button(text="Skip a turn",
-                              on_press=self.__onPressSkipTurn,
+                              on_press=self.onPressSkipTurn,
                               color=globalVar.buttonTextColor,
                               size_hint=(1, 0.25),
                               background_color=globalVar.buttonColor))
@@ -138,7 +138,7 @@ class FightingPage(Screen):
         box.add_widget(scroll)
         return box
 
-    def __onPressSkipTurn(self, *args):
+    def onPressSkipTurn(self, *args):
         pass
 
     def __UpdatePlayerStats(self):
