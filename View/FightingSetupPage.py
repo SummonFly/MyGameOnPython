@@ -1,3 +1,4 @@
+from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.screenmanager import Screen
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
@@ -5,9 +6,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.gridlayout import GridLayout
 
 import globalVariable as globalVar
-from Model.Fighting import Fighting, FightingSetup
-from Model.Damageable import Player
-from Model.GameManager import GameManager
+from Model.Fighting import FightingSetup
 
 from View.PROWidget import PROLabel
 from View.FightingPage import FightingPage
@@ -19,7 +18,7 @@ class FightingSetupPage(Screen):
         self.__fighting = None
         self.setup = fightingSetup
 
-        box = BoxLayout(orientation="vertical", spacing=6)
+        box = BoxLayout(orientation="vertical", spacing=6, size_hint=(0.8, 0.8))
         box.add_widget(Button(text="Menu", on_press=self.OnPressMain,
                               background_color=globalVar.buttonColor,
                               color=globalVar.buttonTextColor,
@@ -70,9 +69,11 @@ class FightingSetupPage(Screen):
 
         box.add_widget(grid)
         box.add_widget(Button(text="Fight", background_color=globalVar.buttonColor, color=globalVar.buttonTextColor,
-                              on_press=self.OnPressFighting, size_hint_y=0.05, background_normal=''))
+                              on_press=self.OnPressFighting, size_hint_y=0.05))
 
-        self.add_widget(box)
+        anchor = AnchorLayout(anchor_x="center", anchor_y="top")
+        anchor.add_widget(box)
+        self.add_widget(anchor)
 
     def __BuildFighting(self):
         self.setup.MaxArmor = int(self.MaxArmorEntry.text)

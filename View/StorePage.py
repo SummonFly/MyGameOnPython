@@ -89,8 +89,7 @@ class StorePage(Screen):
                    size_hint=(1, 0.08),
                    on_press=self.OnPressBuy,
                    background_color=globalVar.buttonColor,
-                   color=globalVar.buttonTextColor,
-                   background_normal=''))
+                   color=globalVar.buttonTextColor))
 
         subBox.add_widget(leftBox)
         subBox.add_widget(rightBox)
@@ -115,8 +114,7 @@ class StorePage(Screen):
                    size_hint=(0.7, 1),
                    on_press=lambda *args: self.OnGoodPress(good),
                    background_color=globalVar.buttonColor,
-                   color=globalVar.buttonTextColor,
-                   background_normal=''))
+                   color=globalVar.buttonTextColor))
         view.add_widget(
             PROLabel(
                 text=str(good.Cost),

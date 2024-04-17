@@ -67,44 +67,37 @@ class FightingPage(Screen):
                               on_press=self.__onPressSkipTurn,
                               color=globalVar.buttonTextColor,
                               size_hint=(1, 0.25),
-                              background_color=globalVar.buttonColor,
-                              background_normal=""))
+                              background_color=globalVar.buttonColor))
         box.add_widget(Button(text="Attack player",
                               on_press=self.onPressAttackPlayer,
                               color=globalVar.buttonTextColor,
                               size_hint=(1, 0.25),
-                              background_color=globalVar.buttonColor,
-                              background_normal=""))
+                              background_color=globalVar.buttonColor))
         box.add_widget(Button(text="Attack enemy",
                               on_press=self.onPressAttackEnemy,
                               color=globalVar.buttonTextColor,
                               size_hint=(1, 0.25),
-                              background_color=globalVar.buttonColor,
-                              background_normal=""))
+                              background_color=globalVar.buttonColor))
         box.add_widget(Button(text="Make effect at enemy",
                               on_press=self.onPressEffectEnemy,
                               color=globalVar.buttonTextColor,
                               size_hint=(1, 0.25),
-                              background_color=globalVar.buttonColor,
-                              background_normal=""))
+                              background_color=globalVar.buttonColor))
         box.add_widget(Button(text="Make effect at player",
                               on_press=self.onPressEffectPlayer,
                               color=globalVar.buttonTextColor,
                               size_hint=(1, 0.25),
-                              background_color=globalVar.buttonColor,
-                              background_normal=""))
+                              background_color=globalVar.buttonColor))
         box.add_widget(Button(text="Make effect at player weapon",
                               on_press=self.onPressEffectPlayerWeapon,
                               color=globalVar.buttonTextColor,
                               size_hint=(1, 0.25),
-                              background_color=globalVar.buttonColor,
-                              background_normal=""))
+                              background_color=globalVar.buttonColor))
         box.add_widget(Button(text="Make effect at enemy weapon",
                               on_press=self.onPressEffectEnemyWeapon,
                               color=globalVar.buttonTextColor,
                               size_hint=(1, 0.25),
-                              background_color=globalVar.buttonColor,
-                              background_normal=""))
+                              background_color=globalVar.buttonColor))
         return box
 
     def __SetSelectedItem(self, item: Item):
@@ -127,8 +120,7 @@ class FightingPage(Screen):
                               size_hint=(1, 0.5),
                               on_press=lambda a: self.__SetSelectedItem(item),
                               background_color=globalVar.buttonColor,
-                              color=globalVar.buttonTextColor,
-                              background_normal=''))
+                              color=globalVar.buttonTextColor))
         return box
 
     def __GetInventoryView(self, inventory: Inventory) -> BoxLayout:

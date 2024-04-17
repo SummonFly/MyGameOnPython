@@ -7420,7 +7420,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -208,
-											"top": -944,
+											"top": -960,
 											"height": 13
 										},
 										{
@@ -7431,7 +7431,7 @@
 											},
 											"font": "Arial;13;1",
 											"left": 1685,
-											"top": 55,
+											"top": 47,
 											"width": 284.1083984375,
 											"height": 13,
 											"text": "Fighting"
@@ -7445,7 +7445,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -208,
-											"top": -944,
+											"top": -960,
 											"width": 73.67724609375,
 											"height": 13,
 											"text": "(from Model)"
@@ -7459,14 +7459,14 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -208,
-											"top": -944,
+											"top": -960,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 1680,
-									"top": 48,
+									"top": 40,
 									"width": 294.1083984375,
 									"height": 25,
 									"stereotypeLabel": {
@@ -7503,7 +7503,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1685,
-											"top": 78,
+											"top": 70,
 											"width": 284.1083984375,
 											"height": 13,
 											"text": "+Player: Player",
@@ -7520,7 +7520,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1685,
-											"top": 93,
+											"top": 85,
 											"width": 284.1083984375,
 											"height": 13,
 											"text": "+Enemy: Player",
@@ -7529,7 +7529,7 @@
 									],
 									"font": "Arial;13;0",
 									"left": 1680,
-									"top": 73,
+									"top": 65,
 									"width": 294.1083984375,
 									"height": 38
 								},
@@ -7554,7 +7554,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1685,
-											"top": 116,
+											"top": 108,
 											"width": 284.1083984375,
 											"height": 13,
 											"text": "+MakeDamage(player: Player, weapon: Weapon)",
@@ -7571,7 +7571,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1685,
-											"top": 131,
+											"top": 123,
 											"width": 284.1083984375,
 											"height": 13,
 											"text": "+MakeEffectAt(player: Player, potion: Potion)",
@@ -7588,7 +7588,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1685,
-											"top": 146,
+											"top": 138,
 											"width": 284.1083984375,
 											"height": 13,
 											"text": "+MakeEffectAt(weapon: Weapon, potion: Potion)",
@@ -7597,7 +7597,7 @@
 									],
 									"font": "Arial;13;0",
 									"left": 1680,
-									"top": 111,
+									"top": 103,
 									"width": 294.1083984375,
 									"height": 53
 								},
@@ -7613,7 +7613,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": -104,
-									"top": -472,
+									"top": -480,
 									"width": 10,
 									"height": 10
 								},
@@ -7629,7 +7629,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": -104,
-									"top": -472,
+									"top": -480,
 									"width": 10,
 									"height": 10
 								}
@@ -7637,7 +7637,7 @@
 							"font": "Arial;13;0",
 							"containerChangeable": true,
 							"left": 1680,
-							"top": 48,
+							"top": 40,
 							"width": 294.1083984375,
 							"height": 131,
 							"nameCompartment": {
@@ -8251,7 +8251,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 1667,
-									"top": 125,
+									"top": 122,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -8272,7 +8272,7 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"left": 1668,
-									"top": 140,
+									"top": 137,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -8293,7 +8293,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 1664,
-									"top": 96,
+									"top": 93,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -8311,7 +8311,7 @@
 								"$ref": "AAAAAAGOWWNisx5m/iY="
 							},
 							"lineStyle": 1,
-							"points": "1679:117;1653:118",
+							"points": "1679:113;1653:115",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGOWXWyo7zkS5M="

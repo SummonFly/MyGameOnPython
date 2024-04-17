@@ -16,6 +16,9 @@ class Fighting:
         self.OnPlayerWin = lambda: print("The player Win")
         self.OnPlayerLost = lambda: print("The player lost")
 
+    def __CheckPlayersHealth(self):
+        pass
+
     def MakeDamage(self, player: Player, weapon: Weapon):
         player.AcceptDamage(weapon)
 

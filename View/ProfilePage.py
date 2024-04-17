@@ -24,8 +24,7 @@ class ProfilePage(Screen):
                                size_hint=(1, 0.1),
                                on_press=self.OnPressMain,
                                background_color=globalVar.buttonColor,
-                               color=globalVar.buttonTextColor,
-                               background_normal=''))
+                               color=globalVar.buttonTextColor))
 
         second = BoxLayout(size_hint=(1, 0.9), spacing=6)
 
@@ -48,7 +47,7 @@ class ProfilePage(Screen):
     def __GetItemButtonCrutch(self, item: Item) -> Button:
         return Button(text=f"{item.GetName()}", on_press=lambda *args: self.OnPressItem(item),
                       height=80, size_hint_y=None, background_color=globalVar.buttonColor,
-                      color=globalVar.buttonTextColor, background_normal='')
+                      color=globalVar.buttonTextColor)
 
     def __GetInventoryView(self, inventory: Inventory) -> GridLayout:
         listItem = BoxLayout(orientation="vertical", size_hint=(1, None), spacing=5)
