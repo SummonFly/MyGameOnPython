@@ -4,7 +4,7 @@ import random
 from Model.GameConfig import GameConfig
 from Model.Inventory import Item
 from Model.Potion import Potion
-from Model.Weapon import WeaponItem
+from Model.Weapon import WeaponItem, WeaponImprovementItem
 
 
 class Good:
@@ -21,7 +21,7 @@ class Good:
 
 
 class Store:
-    def BuyItem(self, good: Good, count: int):
+    def BuyItem(self, good: Good, count: int, addToPlayerInventory=False):
         if good is None:
             return
         if self.Goods.count(good) == 0:
@@ -32,7 +32,10 @@ class Store:
         if count > good.Item.GetCount():
             print(count, good.Item.GetCount())
             return
-        self.Config.Player.Inventory.AddItem(good.Item.PopItem(count))
+        if addToPlayerInventory:
+            self.Config.Player.Inventory.AddItem(good.Item.PopItem(count))
+        else:
+            self.Config.GameInventory.AddItem(good.Item.PopItem(count))
         self.Config.Coins -= good.Cost * count
         if good.Item.GetCount() == 0:
             good = None
@@ -41,7 +44,7 @@ class Store:
     def __init__(self, config: GameConfig):
         self.Config = config
         self.Goods = self.__GetRandomGoodsPotion(45)
-        self.Goods += self.__GetRandomGoodsWeapon(60)
+        self.Goods += self.__GetRandomGoodsWeaponImprovement(6)
         self.OnGoodsChanged = list()
 
     def __LoadPotionsList(self, path: str) -> list:
@@ -59,11 +62,21 @@ class Store:
             goods.append(Good(potion, random.randint(83, 124)))
         return goods
 
-    def __GetRandomGoodsWeapon(self, count: int) -> list:
+    def __GetRandomGoodsWeaponImprovement(self, count: int) -> list:
         goods = list()
         for i in range(count):
-            item = WeaponItem(name=f"Товар Weapon#{i}", count=random.randint(1, 100), damage=random.randint(2, 50), speed=random.randint(0, 50))
-            good = Good(item, random.randint(10, 500))
+            count = 1
+            damage = random.randint(-4, 6)
+            speed = random.randint(-2, 2)
+            crit = random.randint(-20, 20) / 10
+            chance = random.randint(-2, 2) / 10
+            item = WeaponImprovementItem(name=f"Weapon Improvement#{damage * speed * crit * chance * 0.001}",
+                                         count=count,
+                                         damage=damage,
+                                         speed=speed,
+                                         chance=chance,
+                                         multiplier=crit)
+            good = Good(item, random.randint(200, 500))
             goods.append(good)
         return goods
 

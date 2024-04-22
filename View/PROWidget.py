@@ -9,7 +9,11 @@ class PROBoxLayout:
 
 class PROLabel(Label):
     def __init__(self, **kwargs):
-        color = kwargs.pop("backgroundColor")
+        try:
+            color = kwargs.pop("backgroundColor")
+        except KeyError as e:
+            color = (0, 0, 0)
+            print(e)
         super().__init__(**kwargs)
         if color[0] == '#':
             self.backgroundColor = get_color_from_hex(color)
