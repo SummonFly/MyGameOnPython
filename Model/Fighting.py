@@ -4,6 +4,7 @@ import random
 from multipledispatch import dispatch
 
 from Model.Damageable import Player
+from Model.GameConfig import GameConfig
 from Model.Potion import Potion
 from Model.Weapon import Weapon, WeaponImprovementItem
 from Model.Inventory import Inventory, Item
@@ -47,8 +48,9 @@ class Fighting:
 
 
 class FightingSetup:
-    def __init__(self, player: Player):
-        self.__player = player
+    def __init__(self, config: GameConfig):
+        self.__player = config.Player
+        self.__config = config
         self.MaxHealth = 900
         self.MinHealth = 1
         self.MaxArmor = 100
@@ -70,4 +72,14 @@ class FightingSetup:
 
     def GetFighting(self) -> Fighting:
         self.__fighting = Fighting(self.__player, self.__GeneratePlayer())
+        self.__fighting.OnPlayerWin = self.OnPlayerWin
         return self.__fighting
+
+    def OnPlayerWin(self):
+        health = self.__fighting.Enemy.Health / self.__player.Health
+        armor = self.__fighting.Enemy.Armor / self.__player.Armor
+        damage = self.__fighting.Enemy.Weapon.Damage / self.__player.Weapon.Damage
+        result = health + armor + damage
+
+        if result > 0:
+            self.__config.Coins += int(15 * result)

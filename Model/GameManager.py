@@ -25,4 +25,4 @@ class GameManager:
         if not self.Config.Player.Weapon:
             self.Config.Player.Weapon = Weapon()
 
-        self.FightingSetup = FightingSetup(self.Config.Player)
+        self.FightingSetup = FightingSetup(self.Config)

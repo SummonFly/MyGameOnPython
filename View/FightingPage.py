@@ -179,6 +179,7 @@ class FightingPage(Screen):
                                      self.__selectedItem)
         self.__EnemyTurn()
         self.__UpdatePlayerStats()
+        self.__SetSelectedItem(self.__selectedItem)
 
     def onPressEffectEnemy(self, *args):
         if not isinstance(self.__selectedItem, Potion):
@@ -187,6 +188,7 @@ class FightingPage(Screen):
                                      self.__selectedItem)
         self.__EnemyTurn()
         self.__UpdateEnemyStats()
+        self.__SetSelectedItem(self.__selectedItem)
 
     def onPressEffectPlayerWeapon(self, *args):
         if not isinstance(self.__selectedItem, WeaponImprovementItem):
@@ -195,6 +197,7 @@ class FightingPage(Screen):
                                      self.__selectedItem)
         self.__EnemyTurn()
         self.__UpdatePlayerWeaponStats()
+        self.__SetSelectedItem(self.__selectedItem)
 
     def onPressEffectEnemyWeapon(self, *args):
         if not isinstance(self.__selectedItem, WeaponImprovementItem):
@@ -203,6 +206,7 @@ class FightingPage(Screen):
                                      self.__selectedItem)
         self.__EnemyTurn()
         self.__UpdateEnemyWeaponStats()
+        self.__SetSelectedItem(self.__selectedItem)
 
     def OnPressMain(self, *args):
         globalVar.screenManager.remove_widget(self)

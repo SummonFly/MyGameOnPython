@@ -52,6 +52,7 @@ class Inventory:
         self.__items = list()
 
     def GetItems(self) -> list:
+        self.__DeleteNones()
         return self.__items.copy()
 
     def AddItem(self, obj: Item):
@@ -62,6 +63,11 @@ class Inventory:
                 break
         if item.GetCount() > 0:
             self.__items.append(item)
+        self.__DeleteNones()
+
+    def RemoveReference(self, item):
+        if item in self.__items:
+            self.__items.remove(item)
 
     def RemoveItem(self, item: Item):
         for i in filter(lambda a: a.GetName() == item.GetName(), self.__items):
@@ -76,6 +82,14 @@ class Inventory:
                     self.__items.remove(i)
             if item.GetCount() == 0:
                 break
+        self.__DeleteNones()
+
+    def __DeleteNones(self):
+        for item in self.__items:
+            if item is None:
+                self.__items.remove(item)
+            elif item.GetCount() == 0:
+                self.__items.remove(item)
 
     def Clear(self):
         self.__items = list()

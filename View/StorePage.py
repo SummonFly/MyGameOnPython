@@ -66,6 +66,9 @@ class StorePage(Screen):
             size_hint=(0.5, 1),
             spacing=3,
             orientation="vertical")
+        self.__coinsView = BoxLayout(size_hint=(1, 0.07))
+        self.__coinsView.add_widget(self.__GetCoinsView(self.__store.Config.Coins))
+        rightBox.add_widget(self.__coinsView)
 
         rightBox.add_widget(
             PROLabel(text="STATS",
@@ -121,6 +124,17 @@ class StorePage(Screen):
                 size_hint=(0.3, 1)))
         return view
 
+    def __GetCoinsView(self, coins: int) -> BoxLayout:
+        box = BoxLayout()
+        box.add_widget(PROLabel(text="COINS:",
+                                backgroundColor=globalVar.labelBackgroundColor,
+                                color=globalVar.textColor))
+        box.add_widget(PROLabel(text=str(coins),
+                                backgroundColor=globalVar.labelBackgroundColor,
+                                color=globalVar.textColor
+                                ))
+        return box
+
     def OnPressMain(self, *args):
         globalVar.screenManager.current = "main"
 
@@ -128,6 +142,7 @@ class StorePage(Screen):
         self.__currentGood = good
         self.__goodCount.slider.max = good.Item.GetCount()
         self.__UpdateStatsView(good)
+        self.__UpdateCoinsView()
 
     def OnPressBuy(self, *args):
         if self.__currentGood is None:
@@ -135,7 +150,12 @@ class StorePage(Screen):
         self.__store.BuyItem(self.__currentGood, self.__goodCount.slider.value)
         self.__BuildGoods(self.__goodsView)
         self.__UpdateStatsView(self.__currentGood)
+        self.__UpdateCoinsView()
 
     def __UpdateStatsView(self, good: Good):
         self.statsScroll.clear_widgets()
         self.statsScroll.add_widget(Drawer().GetView(good.Item))
+
+    def __UpdateCoinsView(self):
+        self.__coinsView.clear_widgets()
+        self.__coinsView.add_widget(self.__GetCoinsView(self.__store.Config.Coins))
