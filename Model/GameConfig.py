@@ -22,4 +22,4 @@ class GameConfig:
         self.PotionPath = potionsPath
         self.Player = None
         self.GameInventory = Inventory()
-        self.Coins = 200
+        self.Coins = 500
